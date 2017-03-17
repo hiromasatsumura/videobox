@@ -1,0 +1,48 @@
+<div class="contents row" >
+  <% @videos.each do |video| %>
+    <!-- IFrame API が動画プレーヤーを配置する、ページ上の位置を識別--> 
+    <div id="player"></div>
+    <script>
+      // IFrame Player API JavaScript コードが読み込む。
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // プレーヤー API コードがダウンロードし、onYouTubeIframeAPIReady 関数が実行。組み込もうとしている動画プレーヤーを表すグローバル変数 player を定義
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '360',
+          width: '640',
+          videoId: '<%= video.video_id %>',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // onReady イベントが起動し、onPlayerReady 関数が実行する
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // プレーヤーの状態が変化すると、API によって onPlayerStateChange 関数が呼び出される。状態は、プレーヤーの再生、一時停止、終了などを示す。この関数により、プレーヤーの状態が 1（再生中）になると、動画を 6 秒間再生した後、stopVideo 関数を呼び出して動画を停止する。
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+  <% end %>
+</div>
+
+
+

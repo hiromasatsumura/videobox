@@ -1,11 +1,11 @@
 <div class="contents row">
-  <%= form_tag('/new', method: :post) do %>
+  <%= form_tag('/posts', method: :post) do %>
     <h3>
-      Throw-In
+      POST
     </h3>
-    <input placeholder="Username" type="text" name="username">
-    <input placeholder="Video Url" type="text" name="video">
-    <textarea cols="30" name="text" placeholder="text" rows="10"></textarea>
-    <input type="submit" value="Throw-In">
+    <input placeholder="Video Url" type="text" name="url" autofocus="true"><br>
+    <textarea cols="30" name="text" placeholder="text" rows="10"></textarea><br>
+    <input type="submit" value="POST">
   <% end %>
 </div>
+

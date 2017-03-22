@@ -7,12 +7,21 @@ class PostsController < ApplicationController
     @video_ids_j = @videos.map {|video| video.video_id}.to_json.html_safe
   end
 
-  def new
+  def create
+    video_id = post_params[:url].gsub(/https:\/\/www.youtube.com\/watch\?v=(\w+)/){$1}.slice(0..10)
+    Video.create(url: post_params[:url], text: post_params[:text], video_id: video_id, user_id: current_user.id)
+    redirect_to action: :index
   end
 
-  def create
-    video_id = post_params[:url].match(/https:\/\/www.youtube.com\/watch\?v=(\w+)/)
-    Video.create(url: post_params[:url], text: post_params[:text], video_id: video_id, user_id: current_user.id)
+  def destroy
+    video = Video.find(params[:id])
+    video.destroy if video.user_id == current_user.id
+    redirect_to action: :index
+  end
+
+  def edit
+    video = Video.find(params[:id])
+    # コメントのみをindex画面で表示できるようにする。
     redirect_to action: :index
   end
 

@@ -1,9 +1,36 @@
+<div class="contents row">
+  <%= form_tag('/posts', method: :post) do %>
+    <h3>
+      POST
+    </h3>
+    <input placeholder="Video Url" type="text" name="url" autofocus="true"><br>
+    <textarea cols="30" name="text" placeholder="text" rows="10"></textarea><br>
+    <input type="submit" value="POST">
+  <% end %>
+</div>
+
 <div class="contents row" >
   <% @videos.each_with_index do |video, i| %>
     <!-- IFrame API が動画プレーヤーを配置する、ページ上の位置を識別 -->
+    <p>
+      <a href="">
+        <%= video.user.username %>
+      </a>
+    </p>
     <div id="player_<%=i%>"></div>
+    <% if user_signed_in? && current_user.id == video.user_id %>
+      <div>
+        <li>
+          <%= link_to '編集', "/posts/#{video.id}/edit", method: :get %>
+        </li>
+        <li>
+          <%= link_to '削除', "/posts/#{video.id}", method: :delete %>
+        </li>  
+      </div>
+    <% end %>
     <p><%= video.text %></p>
   <% end %>
+
   <script>
     // IFrame Player API JavaScript コードが読み込む。
     var tag = document.createElement('script');
@@ -31,8 +58,10 @@
     }
     // onReady イベントが起動し、onPlayerReady 関数が実行する
     function onPlayerReady(event) {
+      debugger;
       event.target.playVideo();
     }
+
     // プレーヤーの状態が変化すると、API によって onPlayerStateChange 関数が呼び出される。状態は、プレーヤーの再生、一時停止、終了などを示す。この関数により、プレーヤーの状態が 1（再生中）になると、動画を 6 秒間再生した後、stopVideo 関数を呼び出して動画を停止する。
     var done = false;
     function onPlayerStateChange(event) {

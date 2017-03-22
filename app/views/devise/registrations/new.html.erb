@@ -5,9 +5,7 @@
 
     <div class="field">
       <%= f.label :username %><em>(10 characters maximum)</em<br />
-      <%= f.email_field :username ,maxlength: "10" %>
-      <!-- ここで被らないようにしたい！ -->
-      <!-- email_fieldの変更 -->
+      <%= f.text_field :username ,maxlength: "10" %>
     </div>
 
     <div class="field">

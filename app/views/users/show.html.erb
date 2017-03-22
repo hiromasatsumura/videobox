@@ -1,7 +1,24 @@
 <div class="contents row" >
+  <p>
+    <a href="">
+      <%= @user.username %>
+    </a>
+  </p>
+
   <% @videos.each_with_index do |video, i| %>
     <!-- IFrame API が動画プレーヤーを配置する、ページ上の位置を識別 -->
+  
     <div id="player_<%=i%>"></div>
+    <% if user_signed_in? && current_user.id == video.user_id %>
+      <div>
+        <li>
+          <%= link_to '編集', "/posts/#{video.id}/edit", method: :get %>
+        </li>
+        <li>
+          <%= link_to '削除', "/posts/#{video.id}", method: :delete %>
+        </li>  
+      </div>
+    <% end %>
     <p><%= video.text %></p>
   <% end %>
   <script>
@@ -45,4 +62,4 @@
       player.stopVideo();
     }
   </script>
-  </div>
+</div>

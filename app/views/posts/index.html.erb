@@ -17,7 +17,11 @@
         <%= video.user.username %>
       </a>
     </p>
+
+    <p><%= video.text %></p>
+
     <div id="player_<%=i%>"></div>
+    
     <% if user_signed_in? && current_user.id == video.user_id %>
       <div>
         <li>
@@ -28,7 +32,28 @@
         </li>  
       </div>
     <% end %>
-    <p><%= video.text %></p>
+    
+    <div class="comments">   
+      <% if @comments %>
+        <h4>＜COMMENTS＞</h4>
+        <% @comments.each do |comment| %>
+          <p>
+            <strong><%= link_to comment.user.username, "/users/#{comment.user_id}" %>：</strong>
+            <%= comment.comment %>
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+    
+    <div class="container"> 
+      <!-- ここからフォーム -->
+      <% if current_user %>
+        <%= form_tag("/posts/#{video.id}/comments", method: :post) do %>
+          <textarea cols="30" name="comment" placeholder="Comment" rows="2"></textarea>
+          <input type="submit" value="SENT">
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
 
   <script>
@@ -41,7 +66,7 @@
     var player;
     function onYouTubeIframeAPIReady() {
       // ids = ["aaaaaa", "bbbbbb", "cccccc"]
-      var videoIds = <%=@video_ids_j%>;
+      var videoIds = <%=@yt_video_ids_j%>;
       for (var i in videoIds){
         var videoId = videoIds[i];
         var playerId = "player_"+ i;
@@ -58,20 +83,21 @@
     }
     // onReady イベントが起動し、onPlayerReady 関数が実行する
     function onPlayerReady(event) {
-      debugger;
       event.target.playVideo();
+      event.target.mute();
     }
 
     // プレーヤーの状態が変化すると、API によって onPlayerStateChange 関数が呼び出される。状態は、プレーヤーの再生、一時停止、終了などを示す。この関数により、プレーヤーの状態が 1（再生中）になると、動画を 6 秒間再生した後、stopVideo 関数を呼び出して動画を停止する。
     var done = false;
     function onPlayerStateChange(event) {
       if (event.data == YT.PlayerState.PLAYING && !done) {
-        setTimeout(stopVideo, 6000);
+        setTimeout(stopVideo(event), 3000);
         done = true;
       }
     }
-    function stopVideo() {
-      player.stopVideo();
+    function stopVideo(event) {
+      event.target.stopVideo();
+      done = true;
     }
   </script>
 </div>

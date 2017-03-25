@@ -1,5 +1,5 @@
 class AddVideoIdToComments < ActiveRecord::Migration
   def change
-    add_column :comments, :video_id, :string
+    add_column :comments, :video_id, :integer
   end
 end

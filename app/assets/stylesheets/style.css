@@ -14,17 +14,6 @@ header {
 }
 /*タイトルの編集*/
 .title{
-  font-size:120%; /*フォントサイズの調整*/
-  color:#313131; /*文字色の変更*/
-  padding-top: 0px; /*文字上部に余白*/
-  padding-bottom: 0px; /*文字下部に余白*/
-  padding-left: 10px; /*文字左側に余白*/
-  padding-right: 10px; /*文字右側に余白*/
-  border:1px solid #313131; /*文字の周りに線を描く*/
-  border-radius: 5px; /*線の角に丸みを付ける*/
-  letter-spacing: 5px; /*文字と文字の間隔をあける*/
-  font-weight:400; /*文字の太さの変更*/
-  height: 30px;
   padding: auto auto;
 }
 
@@ -32,7 +21,7 @@ header {
 .posts_box {
   background-color: #778899;
   padding: auto auto;
-  margin: 40px auto 0;
+  margin: 46px auto 0;
 }
 textarea {
   resize: none;
@@ -96,9 +85,9 @@ textarea {
 
 .header {
   position: fixed;
-  height: 40px;
+  height: 46px;
   width: 100%;
-  background-image: url("videobox/app/assets/image/header_cover.png");
+  background-image: url("header_cover.png");
   background-position: top;
   background-repeat: no-repeat;
   margin: 0 auto;
@@ -106,6 +95,7 @@ textarea {
 }
 
 .flexbox {
+  height: 46px;
   display: -webkit-flex;
   display: flex;
   -webkit-justify-content: center;
@@ -116,7 +106,6 @@ textarea {
   /*垂直方向に中央揃え*/
   align-items: stretch;
   text-align: center;
-  height: auto;
   padding: auto 0;
   margin: 0 auto;
 }
@@ -138,12 +127,7 @@ textarea {
 
 .card_design {
   border-bottom: 8px solid #f0f0f0;
-
 }
-
-
-
-
 
 
 

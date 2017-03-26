@@ -1,11 +1,10 @@
-<div class="contents row">
-  <%= form_tag('/posts', method: :post) do %>
-    <h3>
-      POST
-    </h3>
-    <input placeholder="Video Url" type="text" name="url" autofocus="true"><br>
-    <textarea cols="30" name="text" placeholder="text" rows="10"></textarea><br>
-    <input type="submit" value="POST">
+<div class="posts_box">
+  <% if user_signed_in? %>
+    <%= form_tag('/posts', method: :post) do %>
+      <input placeholder="Video Url" type="text" name="url" autofocus="true"><br>
+      <textarea cols="30" name="text" placeholder="text" rows="10"></textarea><br>
+      <input type="submit" value="POST">
+    <% end %>
   <% end %>
 </div>
 
@@ -91,11 +90,11 @@
     var done = false;
     function onPlayerStateChange(event) {
       if (event.data == YT.PlayerState.PLAYING && !done) {
-        setTimeout(stopVideo(event), 3000);
+        setTimeout(stopVideo, 3000);
         done = true;
       }
     }
-    function stopVideo(event) {
+    function stopVideo() {
       event.target.stopVideo();
       done = true;
     }

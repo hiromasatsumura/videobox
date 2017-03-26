@@ -11,16 +11,14 @@
 
   <body>
     <header class="header">
-      <div class="header__bar row">
-        <h1 class="grid-6">
+      <div class="flexbox">
+        <h1 class="title">
           <%= link_to "VideoBox", root_path,  method: :get %>
         </h1>
         <% if user_signed_in? %>
           <div class="user_nav grid-6">
-            <span><%= current_user.username %>
               <ul class="user__info">
                 <li>
-                  <a href="/posts">TOP</a>
                   <a href="/users/<%= current_user.id %>">MY PAGE</a>
                   <%= link_to "LOG OUT", destroy_user_session_path, method: :delete %>
                 </li>
@@ -35,7 +33,11 @@
         <% end %>
       </div>
     </header>
-    <%= yield %>
+
+    <div class="contents clearfix">
+      <%= yield %>
+    </div>
+
   </body>
 
 </html>

@@ -8,3 +8,51 @@ h1,h2,h3,h4,h5,h6,p {
   padding: 10px 0;
   margin: 0;
 }
+
+header {
+  background-color: gray;
+}
+
+/*ヘッダーの調整*/
+
+.header {
+  position: fixed;
+  height: 83px;
+  background-color: #ffffff;
+  margin: 0 auto;
+}
+
+.flexbox {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  /*水平方向に中央揃え*/
+  justify-content: center;
+  justify-content: space-around;
+  -webkit-align-items: stretch;
+  /*垂直方向に中央揃え*/
+  align-items: stretch;
+  text-align: center;
+  height: 83px;
+  padding: auto 0;
+  margin: 0 auto;
+}
+
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+
+/*kコンテンツの調整*/
+
+.contents {
+  background-color: #ffffff;
+  width: 640px;
+  border: 1px solid #aaa;
+  margin: 0 auto;
+  margin-top: 83px auto;
+}
+
+

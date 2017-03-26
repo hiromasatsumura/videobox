@@ -23,6 +23,26 @@
       </div>
     <% end %>
 
+    <div class="comments">
+      <% if video.comments %>
+        <h4>＜COMMENTS＞</h4>
+        <% video.comments.each do |comment| %>
+          <p>
+            <strong><%= link_to comment.user.username, "/users/#{comment.user_id}" %>：</strong>
+            <%= comment.comment %>
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="container"> 
+      <!-- ここからフォーム -->
+      <% if current_user %>
+        <%= form_tag("/posts/#{video.id}/comments", method: :post) do %>
+          <textarea cols="30" name="comment" placeholder="Comment" rows="2"></textarea>
+          <input type="submit" value="SENT">
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
   
   <script>

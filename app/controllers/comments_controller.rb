@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def create
-    Comment.create(comment: comment_params[:comment], video_id: comment_params[:video_id], user_id: current_user.id)
+    Comment.create(comment: comment_params[:comment], video_id: params[:post_id], user_id: current_user.id)
     redirect_to "/posts"
   end
 

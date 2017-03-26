@@ -1,56 +1,66 @@
-<div class="posts_box">
+<div class="posts_box clearfix">
   <% if user_signed_in? %>
     <%= form_tag('/posts', method: :post) do %>
-      <input placeholder="Video Url" type="text" name="url" autofocus="true"><br>
-      <textarea cols="30" name="text" placeholder="text" rows="10"></textarea><br>
-      <input type="submit" value="POST">
+      <textarea cols="30" name="text" placeholder="今何観てる？" rows="10"></textarea><br>
+      <div class="url_box">
+        <input class="url_posts" placeholder="Video Url" type="text" name="url" autofocus="true"><br>
+      </div>
+      <div class="button_location">
+        <input class="submit_button" type="submit" value="POST">
+      </div>
     <% end %>
   <% end %>
 </div>
 
 <div class="contents row" >
   <% @videos.each_with_index do |video, i| %>
-    <!-- IFrame API が動画プレーヤーを配置する、ページ上の位置を識別 -->
-    <p>
-      <a href="">
-        <%= video.user.username %>
-      </a>
-    </p>
+    <div class="card_design">
+      <!-- IFrame API が動画プレーヤーを配置する、ページ上の位置を識別 -->
+      <p>
+        <a href="" class="posts_name">
+          <%= video.user.username %>
+        </a>
+      </p>
 
-    <p><%= video.text %></p>
+      <p class="posts_text"><%= video.text %></p>
 
-    <div id="player_<%=i%>"></div>
-    
-    <% if user_signed_in? && current_user.id == video.user_id %>
-      <div>
-        <li>
-          <%= link_to '編集', "/posts/#{video.id}/edit", method: :get %>
-        </li>
-        <li>
-          <%= link_to '削除', "/posts/#{video.id}", method: :delete %>
-        </li>  
+      <div id="player_<%=i%>"></div>
+      
+      <% if user_signed_in? && current_user.id == video.user_id %>
+        <div class="menu-trigger" href="#">
+          <span>
+            <li>
+              <%= link_to '編集', "/posts/#{video.id}/edit", method: :get %>
+            </li>
+          </span>
+          <span>
+            <li>
+              <%= link_to '削除', "/posts/#{video.id}", method: :delete %>
+            </li>
+          </span>  
+        </div>
+      <% end %>
+      
+      <div class="comments">
+        <% if video.comments %>
+          <!-- <h4>＜COMMENTS＞</h4> -->
+          <% video.comments.each do |comment| %>
+            <p>
+              <strong><%= link_to comment.user.username, "/users/#{comment.user_id}" %>：</strong>
+              <%= comment.comment %>
+            </p>
+          <% end %>
+        <% end %>
       </div>
-    <% end %>
-    
-    <div class="comments">
-      <% if video.comments %>
-        <h4>＜COMMENTS＞</h4>
-        <% video.comments.each do |comment| %>
-          <p>
-            <strong><%= link_to comment.user.username, "/users/#{comment.user_id}" %>：</strong>
-            <%= comment.comment %>
-          </p>
+      <div class="container"> 
+        <!-- ここからフォーム -->
+        <% if current_user %>
+          <%= form_tag("/posts/#{video.id}/comments", method: :post) do %>
+            <textarea cols="30" name="comment" placeholder="Comment" rows="2"></textarea>
+            <input type="submit" value="SENT">
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
-    <div class="container"> 
-      <!-- ここからフォーム -->
-      <% if current_user %>
-        <%= form_tag("/posts/#{video.id}/comments", method: :post) do %>
-          <textarea cols="30" name="comment" placeholder="Comment" rows="2"></textarea>
-          <input type="submit" value="SENT">
-        <% end %>
-      <% end %>
+      </div>
     </div>
   <% end %>
 

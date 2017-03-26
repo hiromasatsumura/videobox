@@ -19,10 +19,10 @@ class PostsController < ApplicationController
     redirect_to action: :index
   end
 
-  def show
-    @video = Video.find(params[:id])
-    @comments = @video.comments.includes(:user)
-  end
+  # def show
+  #   @video = Video.find(params[:id])
+  #   @comments = @video.comments.includes(:user)
+  # end
 
   def edit
     @video = Video.find(params[:id])

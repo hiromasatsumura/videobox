@@ -18,6 +18,7 @@ header {
 .header {
   position: fixed;
   height: 83px;
+  width: 100%;
   background-color: #ffffff;
   margin: 0 auto;
 }
@@ -52,7 +53,7 @@ header {
   width: 640px;
   border: 1px solid #aaa;
   margin: 0 auto;
-  margin-top: 83px auto;
+  padding-top: 83px auto;
 }
 
 

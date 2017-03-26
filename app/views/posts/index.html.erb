@@ -32,10 +32,10 @@
       </div>
     <% end %>
     
-    <div class="comments">   
-      <% if @comments %>
+    <div class="comments">
+      <% if video.comments %>
         <h4>＜COMMENTS＞</h4>
-        <% @comments.each do |comment| %>
+        <% video.comments.each do |comment| %>
           <p>
             <strong><%= link_to comment.user.username, "/users/#{comment.user_id}" %>：</strong>
             <%= comment.comment %>
@@ -43,7 +43,6 @@
         <% end %>
       <% end %>
     </div>
-    
     <div class="container"> 
       <!-- ここからフォーム -->
       <% if current_user %>

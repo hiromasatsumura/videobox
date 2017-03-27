@@ -22,9 +22,7 @@
     <div class="card_design">
       <!-- IFrame API が動画プレーヤーを配置する、ページ上の位置を識別 -->
       <p>
-        <a href="" class="posts_name">
-          <%= video.user.username %>
-        </a>
+        <%= link_to video.user.username, user_path(video.user.id), method: :get %>
       </p>
       <p class="posts_text"><%= video.text %></p>
       <div id="player_<%=i%>"></div>

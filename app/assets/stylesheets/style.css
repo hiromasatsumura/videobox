@@ -114,13 +114,13 @@ header {
 .left_header {
   float: left;
   height: 60px;
-  width: 25%;
+  width: 33%;
 }
 
 .right_header {
   float: right;
   height: 60px;
-  width: 25%;
+  width: 33%;
   margin-top: 0px;
 }
 

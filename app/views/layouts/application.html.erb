@@ -21,7 +21,7 @@
         <% if user_signed_in? %>
           <ul class="menu_button">
             <li>
-              <a href="/users/<%= current_user.id %>"><%= image_tag ("mypage.png"), :size => '40x40' %></a>
+              <%= link_to image_tag('mypage.png', { :border => '0', :alt => 'MY PAGE', :size => "40x40"}), user_path(current_user.id), method: :get %>
             </li>
             <li>
               <p>

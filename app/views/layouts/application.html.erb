@@ -12,7 +12,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   </head>
 
-  <body>
+  <body link="000" vlink="#000">
     <header class="header">
       <div class="side_header"></div>
       <div class="left_header">
@@ -22,21 +22,21 @@
         <% if user_signed_in? %>
           <ul class="menu">
             <li class="menu_button">
-              <%= link_to image_tag('mypage.png', { :border => '0', :alt => 'MY PAGE', :size => "40x40"}), user_path(current_user.id), method: :get %>
+              <%= link_to image_tag('mypage.png', { :border => '0', :alt => 'MY PAGE', :size => "35x35"}), user_path(current_user.id), method: :get %>
             </li>
             <li class="menu_button">
               <p>
-                <a id="modal-open" class="button-link"><%= image_tag ("post.png"), :size => '40x40' %></a>
+                <a id="modal-open" class="button-link"><%= image_tag ("post.png"), :size => '35x35' %></a>
               </p>
             </li>
             <li class="menu_button">
-              <%= link_to image_tag('exit.png', { :border => '0', :alt => 'LOG OUT', :size => "40x40"}), destroy_user_session_path, method: :delete %>
+              <%= link_to image_tag('exit.png', { :border => '0', :alt => 'LOG OUT', :size => "35x35"}), destroy_user_session_path, method: :delete %>
             </li>
           </ul>           
         <% else %>
           <div class="grid-6">
-            <%= link_to image_tag('log_in.png', { :border => '0', :alt => 'LOG IN', :size => "160x40"}), new_user_session_path, class: 'post' %>
-            <%= link_to image_tag('registration.png', { :border => '0', :alt => 'LOG IN', :size => "160x40"}), new_user_registration_path, class: 'post' %>
+            <%= link_to image_tag('log_in.png', { :border => '0', :alt => 'LOG IN', :size => "150x40"}), new_user_session_path, class: 'post' %>
+            <%= link_to image_tag('registration.png', { :border => '0', :alt => 'LOG IN', :size => "150x40"}), new_user_registration_path, class: 'post' %>
           </div>
         <% end %>
       </div>

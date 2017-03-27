@@ -1,5 +1,9 @@
-<!--  -->
-<p class="posts_username">
-  <%= link_to video.user.username, user_path(video.user.id), method: :get, :style => "text-decoration: none;" %>
-</p>
-<p class="posts_text"><%= video.text %></p>
+<div class="over_yt_area">
+  <div class="user_image">
+    <%= image_tag  video.user.avatar, :size => '40x40', :class => "avatar" %>
+  </div>
+  <p class="posts_user_info">
+    <%= link_to video.user.username, user_path(video.user.id), method: :get, :style => "text-decoration: none;", :class => "posts_username" %><br>
+    <%= video.text %>
+  </p>
+</div>

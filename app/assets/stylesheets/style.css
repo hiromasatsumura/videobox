@@ -55,44 +55,6 @@ header {
   display: block;
 }
 
-
-/*POSTボタン*/
-.button_location {
-  float: right;
-}
-.submit_button {
-  display: inline-block;
-  background-color: #998E99s;
-  color: #fff;
-  width: 100px;
-  height: 25px;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  font-size: larger;
-  border-radius: 8px;
-}
-.submit_button::before,
-.submit_button::after {
-  position: absolute;
-  z-index: -1;
-  display: block;
-  content: '';
-}
-.submit_button,
-.submit_button::before,
-.submit_button::after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: all .3s;
-  transition: all .3s;
-}
-.submit_button:hover {
-  letter-spacing: 5px;
-}
-
-
 /*ヘッダーの調整*/
 
 .header {
@@ -105,30 +67,25 @@ header {
   margin: 0 auto;
   top: 0;
 }
-
 .side_header {
   width: 25%;
   float: left;
 }
-
 .left_header {
   float: left;
   height: 60px;
   width: 33%;
 }
-
 .right_header {
   float: right;
   height: 60px;
   width: 33%;
   margin-top: 0px;
 }
-
 .menu_button {
   margin: 0 auto;
   top: 0;
 }
-
 li {
   display: inline-block;
   margin: 0 10px;
@@ -151,6 +108,21 @@ li {
 
 .card_design {
   border-bottom: 8px solid #f0f0f0;
+  width: 640px;
+}
+
+/*YT上*/
+
+
+/*YT下*/
+.menu-trigger {
+  float: right;
+}
+button {
+  text-decoration: none;
+}
+.comment_submit {
+  float: right;
 }
 
 
@@ -192,6 +164,41 @@ li {
   top: 0px;
 }
 
+/*モーダル内のPOSTボタン*/
+.button_location {
+  float: right;
+}
+.submit_button {
+  display: inline-block;
+  background-color: #998E99s;
+  color: #fff;
+  width: 100px;
+  height: 25px;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  font-size: larger;
+  border-radius: 8px;
+}
+.submit_button::before,
+.submit_button::after {
+  position: absolute;
+  z-index: -1;
+  display: block;
+  content: '';
+}
+.submit_button,
+.submit_button::before,
+.submit_button::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+.submit_button:hover {
+  letter-spacing: 5px;
+}
 
 
 

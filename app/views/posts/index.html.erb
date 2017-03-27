@@ -1,3 +1,4 @@
+<!-- 投稿フォーム -->
 <div class="posts_box clearfix" id="modal-content">
   <div>
     <p><a id="modal-close" class="back_button-link"><%= image_tag ("back.png"), :size => '25x25' %></a></p>
@@ -16,55 +17,17 @@
     <% end %>
   </div>
 </div>
-
+<!-- コンテンツ -->
 <div class="contents row" >
   <% @videos.each_with_index do |video, i| %>
     <div class="card_design">
       <!-- IFrame API が動画プレーヤーを配置する、ページ上の位置を識別 -->
-      <p>
-        <%= link_to video.user.username, user_path(video.user.id), method: :get %>
-      </p>
-      <p class="posts_text"><%= video.text %></p>
+      <%= render partial: "over_YT", locals: { video: video} %>
       <div id="player_<%=i%>"></div>
-      <% if user_signed_in? && current_user.id == video.user_id %>
-        <div class="menu-trigger" href="#">
-          <li>
-            <!-- 編集ボタン -->
-            <%= link_to image_tag('edit.png', { :border => '0', :alt => 'EDIT', :size => "25x25"}), "/posts/#{video.id}/edit", method: :get %>
-          </li>
-          <li>
-            <!-- 削除ボタン -->
-            <%= link_to image_tag('delete.png', { :border => '0', :alt => 'DELETE', :size => "25x25"}), "/posts/#{video.id}", method: :delete %>
-          </li>
-          <li>
-            
-          </li>
-        </div>
-      <% end %>
-      
-      <div class="comments">
-        <% if video.comments %>
-          <!-- <h4>＜COMMENTS＞</h4> -->
-          <% video.comments.each do |comment| %>
-            <p>
-              <strong><%= link_to comment.user.username, "/users/#{comment.user_id}" %>：</strong>
-              <%= comment.comment %>
-            </p>
-          <% end %>
-        <% end %>
-      </div>
-      <div class="container"> 
-        <!-- ここからフォーム -->
-        <% if current_user %>
-          <%= form_tag("/posts/#{video.id}/comments", method: :post) do %>
-            <textarea class="comment_textarea" cols="30" name="comment" placeholder="Comment" rows="2"></textarea>
-            <input type="submit" value="SENT">
-          <% end %>
-        <% end %>
-      </div>
+      <%= render partial: "under_YT", locals: { video: video} %>
     </div>
   <% end %>
-
+<!-- 以下YouTube APIの中身 -->
   <script>
     // IFrame Player API JavaScript コードが読み込む。
     var tag = document.createElement('script');

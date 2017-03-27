@@ -1,0 +1,39 @@
+<% if user_signed_in? && current_user.id == video.user_id %>
+  <div class="menu-trigger" href="#">
+    <li>
+      <!-- 編集ボタン -->
+      <%= link_to image_tag('edit.png', { :border => '0', :alt => 'EDIT', :size => "25x25"}), "/posts/#{video.id}/edit", method: :get %>
+    </li>
+    <li>
+      <!-- 削除ボタン -->
+      <%= link_to image_tag('delete.png', { :border => '0', :alt => 'DELETE', :size => "25x25"}), "/posts/#{video.id}", method: :delete %>
+    </li>
+    <li>
+      
+    </li>
+  </div>
+<% end %>
+<div class="comment_open">
+  <a class="comment_<%= video.id %>"><%= image_tag ("comment.png"), :size => '25x25' %></a>
+  <div class="comment_box"> 
+  <% if current_user %>
+    <%= form_tag("/posts/#{video.id}/comments", method: :post) do %>
+      <textarea class="comment_textarea" cols="30" name="comment" placeholder="Comment" rows="2"></textarea>
+      <input class="comment_submit" type="submit" value="SENT">
+    <% end %>
+  <% end %>
+  </div>
+</div>
+
+<div class="comments">
+  <% if video.comments %>
+    <!-- <h4>＜COMMENTS＞</h4> -->
+    <% video.comments.each do |comment| %>
+      <p>
+        <strong><%= link_to comment.user.username, "/users/#{comment.user_id}" %>：</strong>
+        <%= comment.comment %>
+      </p>
+    <% end %>
+  <% end %>
+</div>
+<!-- ここからコメントフォーム -->

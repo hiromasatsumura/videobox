@@ -6,32 +6,40 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="js/modal.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
   </head>
 
   <body>
     <header class="header">
-      <div class="flexbox">
-        <h1 class="title">
-          <%= link_to image_tag('videobox_title.png', { :border => '0', :alt => 'VIDEOBOX', :size => "64x64"}), root_path, method: :get %>
-        </h1>
+      <div class="side_header"></div>
+      <div class="left_header">
+        <%= link_to image_tag('videobox_title.png', { :border => '0', :alt => 'VIDEOBOX', :size => "220x80"}), root_path, method: :get %>
+      </div>
+      <div class="right_header">
         <% if user_signed_in? %>
-          <div class="user_nav grid-6">
-              <ul class="user__info">
-                <li>
-                  <a href="/users/<%= current_user.id %>">MY PAGE</a>
-                  <%= link_to "LOG OUT", destroy_user_session_path, method: :delete %>
-                </li>
-              </ul>
-            </span>            
-          </div>
+          <ul class="menu_button">
+            <li>
+              <a href="/users/<%= current_user.id %>"><%= image_tag ("mypage.png"), :size => '40x40' %></a>
+            </li>
+            <li>
+              <p>
+                <a id="modal-open" class="button-link"><%= image_tag ("post.png"), :size => '40x40' %></a>
+              </p>
+            </li>
+            <li>
+              <%= link_to image_tag('exit.png', { :border => '0', :alt => 'LOG OUT', :size => "40x40"}), destroy_user_session_path, method: :delete %>
+            </li>
+          </ul>           
         <% else %>
           <div class="grid-6">
-            <%= link_to "ログイン", new_user_session_path, class: 'post' %>
-            <%= link_to "新規登録", new_user_registration_path, class: 'post' %>
+            <%= link_to image_tag('log_in.png', { :border => '0', :alt => 'LOG IN', :size => "160x40"}), new_user_session_path, class: 'post' %>
+            <%= link_to image_tag('registration.png', { :border => '0', :alt => 'LOG IN', :size => "160x40"}), new_user_registration_path, class: 'post' %>
           </div>
         <% end %>
       </div>
+      <div class="side_header"></div>
     </header>
 
     <div class="contents clearfix">

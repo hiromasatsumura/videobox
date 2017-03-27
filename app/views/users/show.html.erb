@@ -1,48 +1,66 @@
 <script src="https://www.youtube.com/iframe_api"></script>
-<div class="contents row" >
-  <p>
-    <!-- <a href="">
-      <%= @user.username %>
-    </a> -->
-  </p>
 
-  <% @videos.each_with_index do |video, i| %>
-    <!-- IFrame API が動画プレーヤーを配置する、ページ上の位置を識別 -->
-  
-    <p><%= video.text %></p>
-
-    <div id="player_<%=i%>"></div>
-    
-    <% if user_signed_in? && current_user.id == video.user_id %>
-      <div>
-        <li>
-          <%= link_to '編集', "/posts/#{video.id}/edit", method: :get %>
-        </li>
-        <li>
-          <%= link_to '削除', "/posts/#{video.id}", method: :delete %>
-        </li>  
-      </div>
+<div class="posts_box clearfix" id="modal-content">
+  <div>
+    <p><a id="modal-close" class="back_button-link"><%= image_tag ("back.png"), :size => '25x25' %></a></p>
+  </div>
+  <div id="modal-content-innar">
+    <% if user_signed_in? %>
+      <%= form_tag('/posts', method: :post) do %>
+        <textarea class="post_textarea" cols="30" name="text" placeholder="今何観てる？" rows="10"></textarea><br>
+        <div class="url_box">
+          <input class="url_posts" placeholder="Video Url" type="text" name="url" autofocus="true"><br>
+        </div>
+        <div class="button_location">
+          <input class="submit_button" type="submit" value="POST">
+        </div>
+      <% end %>
     <% end %>
+  </div>
+</div>
 
-    <div class="comments">
-      <% if video.comments %>
-        <h4>＜COMMENTS＞</h4>
-        <% video.comments.each do |comment| %>
-          <p>
-            <strong><%= link_to comment.user.username, "/users/#{comment.user_id}" %>：</strong>
-            <%= comment.comment %>
-          </p>
-        <% end %>
+<div class="contents row" >
+  <% @videos.each_with_index do |video, i| %>
+    <div class="card_design">
+      <!-- IFrame API が動画プレーヤーを配置する、ページ上の位置を識別 -->
+      <p>
+        <a href="">
+          <%= @user.username %>
+        </a>
+      </p>
+      <p><%= video.text %></p>
+      <div id="player_<%=i%>"></div>
+      <% if user_signed_in? && current_user.id == video.user_id %>
+        <div>
+          <li>
+            <%= link_to image_tag('edit.png', { :border => '0', :alt => 'EDIT', :size => "25x25"}), "/posts/#{video.id}/edit", method: :get %>
+          </li>
+          <li>
+            <%= link_to image_tag('delete.png', { :border => '0', :alt => 'DELETE', :size => "25x25"}), "/posts/#{video.id}", method: :delete %>
+          </li>  
+        </div>
       <% end %>
-    </div>
-    <div class="container"> 
-      <!-- ここからフォーム -->
-      <% if current_user %>
-        <%= form_tag("/posts/#{video.id}/comments", method: :post) do %>
-          <textarea cols="30" name="comment" placeholder="Comment" rows="2"></textarea>
-          <input type="submit" value="SENT">
+
+      <div class="comments">
+        <% if video.comments %>
+          <h4>＜COMMENTS＞</h4>
+          <% video.comments.each do |comment| %>
+            <p>
+              <strong><%= link_to comment.user.username, "/users/#{comment.user_id}" %>：</strong>
+              <%= comment.comment %>
+            </p>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
+      <div class="container"> 
+        <!-- ここからフォーム -->
+        <% if current_user %>
+          <%= form_tag("/posts/#{video.id}/comments", method: :post) do %>
+            <textarea class="comment_textarea" cols="30" name="comment" placeholder="Comment" rows="2"></textarea>
+            <input type="submit" value="SENT">
+          <% end %>
+        <% end %>
+      </div>
     </div>
   <% end %>
   
@@ -84,7 +102,7 @@
         done = true;
       }
     }
-    function stopVideo(event) {
+    function stopVideo() {
       event.target.stopVideo();
       done = true;
     }

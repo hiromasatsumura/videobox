@@ -1,16 +1,20 @@
-<div class="posts_box clearfix">
-  <% if user_signed_in? %>
-    <%= form_tag('/posts', method: :post) do %>
-      <textarea cols="30" name="text" placeholder="今何観てる？" rows="10"></textarea><br>
-      <div class="url_box">
-        <input class="url_posts" placeholder="Video Url" type="text" name="url" autofocus="true"><br>
-      </div>
-      <div class="button_location">
-        <input class="submit_button" type="submit" value="POST">
-      </div>
+<div class="posts_box clearfix" id="modal-content">
+  <div>
+    <p><a id="modal-close" class="back_button-link"><%= image_tag ("back.png"), :size => '25x25' %></a></p>
+  </div>
+  <div id="modal-content-innar">
+    <% if user_signed_in? %>
+      <%= form_tag('/posts', method: :post) do %>
+        <textarea class="post_textarea" cols="30" name="text" placeholder="今何観てる？" rows="10"></textarea><br>
+        <div class="url_box">
+          <input class="url_posts" placeholder="Video Url" type="text" name="url" autofocus="true"><br>
+        </div>
+        <div class="button_location">
+          <input class="submit_button" type="submit" value="POST">
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-  
+  </div>
 </div>
 
 <div class="contents row" >
@@ -22,23 +26,21 @@
           <%= video.user.username %>
         </a>
       </p>
-
       <p class="posts_text"><%= video.text %></p>
-
       <div id="player_<%=i%>"></div>
-      
       <% if user_signed_in? && current_user.id == video.user_id %>
         <div class="menu-trigger" href="#">
-          <span>
-            <li>
-              <%= link_to '編集', "/posts/#{video.id}/edit", method: :get %>
-            </li>
-          </span>
-          <span>
-            <li>
-              <%= link_to '削除', "/posts/#{video.id}", method: :delete %>
-            </li>
-          </span>  
+          <li>
+            <!-- 編集ボタン -->
+            <%= link_to image_tag('edit.png', { :border => '0', :alt => 'EDIT', :size => "25x25"}), "/posts/#{video.id}/edit", method: :get %>
+          </li>
+          <li>
+            <!-- 削除ボタン -->
+            <%= link_to image_tag('delete.png', { :border => '0', :alt => 'DELETE', :size => "25x25"}), "/posts/#{video.id}", method: :delete %>
+          </li>
+          <li>
+            
+          </li>
         </div>
       <% end %>
       
@@ -57,7 +59,7 @@
         <!-- ここからフォーム -->
         <% if current_user %>
           <%= form_tag("/posts/#{video.id}/comments", method: :post) do %>
-            <textarea cols="30" name="comment" placeholder="Comment" rows="2"></textarea>
+            <textarea class="comment_textarea" cols="30" name="comment" placeholder="Comment" rows="2"></textarea>
             <input type="submit" value="SENT">
           <% end %>
         <% end %>

@@ -52,8 +52,6 @@ gem 'devise'
 
 gem 'mysql2', '0.3.18'
 
-gem 'carrierwave'
-gem 'rmagick'
 
 
 # https://protected-reef-23080.herokuapp.com/

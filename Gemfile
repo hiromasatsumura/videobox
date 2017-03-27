@@ -51,7 +51,8 @@ gem 'sprockets', '2.11.0'
 gem 'devise'
 
 gem 'mysql2', '0.3.18'
-
-
+# Image Uploader
+gem 'carrierwave'
+gem 'rmagick', require: 'RMagick'
 
 # https://protected-reef-23080.herokuapp.com/

@@ -1,4 +1,5 @@
+<!--  -->
 <p class="posts_username">
-  <%= link_to video.user.username, user_path(video.user.id), method: :get %>
+  <%= link_to video.user.username, user_path(video.user.id), method: :get, :style => "text-decoration: none;" %>
 </p>
 <p class="posts_text"><%= video.text %></p>

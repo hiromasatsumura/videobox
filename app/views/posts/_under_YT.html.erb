@@ -14,15 +14,17 @@
   </div>
 <% end %>
 <div class="comment_open">
-  <a class="comment_<%= video.id %>"><%= image_tag ("comment.png"), :size => '25x25' %></a>
-  <div class="comment_box"> 
   <% if current_user %>
-    <%= form_tag("/posts/#{video.id}/comments", method: :post) do %>
-      <textarea class="comment_textarea" cols="30" name="comment" placeholder="Comment" rows="2"></textarea>
-      <input class="comment_submit" type="submit" value="SENT">
-    <% end %>
+    <a class="comment_<%= video.id %>"><%= image_tag ("comment.png"), :size => '25x25' %></a>
+    <div class="comment_box clearfix"> 
+      <% if current_user %>
+        <%= form_tag("/posts/#{video.id}/comments", method: :post) do %>
+          <textarea class="comment_textarea" cols="30" name="comment" placeholder="Comment" rows="2"></textarea>
+          <input class="comment_submit" type="submit" value="COMMENT">
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
-  </div>
 </div>
 
 <div class="comments">

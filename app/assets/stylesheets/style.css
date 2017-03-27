@@ -23,6 +23,13 @@ header {
   background-color: #ffffff;
 }
 
+/*clearfix*/
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
 /*テキストエリアの調整*/
 .posts_box {
   background-color: #778899;
@@ -35,24 +42,13 @@ header {
   margin: 0 auto;
   font-size: larger;
 }
-.comment_textarea {
-  resize: none;
-  height: 40px;
-  width: 630px;
-  margin: 0 auto;
-  font-size: larger;
-}
+
 .url_box {
   float: left;
 }
 .url_posts {
   width: 520px;
   margin: 0 auto;
-}
-.clearfix:after {
-  content: "";
-  clear: both;
-  display: block;
 }
 
 /*ヘッダーの調整*/
@@ -74,21 +70,26 @@ header {
 .left_header {
   float: left;
   height: 60px;
-  width: 33%;
+  width: 35%;
+  text-align: right;
 }
 .right_header {
   float: right;
   height: 60px;
-  width: 33%;
+  width: 35%;
   margin-top: 0px;
+  text-align: left;
 }
-.menu_button {
+.menu {
   margin: 0 auto;
   top: 0;
 }
 li {
   display: inline-block;
   margin: 0 10px;
+}
+.grid-6 {
+  margin-top: 15px;
 }
 
 
@@ -104,6 +105,7 @@ li {
 }
 .posts_text {
   float: left;
+  padding: 0px 20px;
 }
 
 .card_design {
@@ -112,7 +114,10 @@ li {
 }
 
 /*YT上*/
-
+.posts_username {
+  font-size: 18px;
+  padding: 0px 10px;
+}
 
 /*YT下*/
 .menu-trigger {
@@ -121,8 +126,25 @@ li {
 button {
   text-decoration: none;
 }
+.comment_box {
+  padding: 0px 0px 5px 0px;
+}
+.comment_textarea {
+  height: 40px;
+  width: 565px;
+  margin: 0 auto;
+  resize: none;
+  margin: 0 auto;
+  font-size: larger;
+}
 .comment_submit {
   float: right;
+}
+.comment_open {
+  padding: 0px 30px;
+}
+.comments {
+  padding: 0px 30px;
 }
 
 

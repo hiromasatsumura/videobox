@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar,
                                       content_type: ["image/jpg","image/jpeg","image/png"]
 
-  validates :username, presence: true
+  # validates :username, presence: true
 
   has_many :videos
   has_many :comments
